@@ -1,0 +1,17 @@
+LICENSE
+README.md
+pyproject.toml
+setup.cfg
+src/co2f/__init__.py
+src/co2f.egg-info/PKG-INFO
+src/co2f.egg-info/SOURCES.txt
+src/co2f.egg-info/dependency_links.txt
+src/co2f.egg-info/top_level.txt
+src/co2f/app/__init__.py
+src/co2f/app/kivy/__init__.py
+src/co2f/app/kivy/src/__init__.py
+src/co2f/app/kivy/src/main.py
+src/co2f/electricity/__init__.py
+src/co2f/food/__init__.py
+src/co2f/heating/__init__.py
+src/co2f/transport/__init__.py
