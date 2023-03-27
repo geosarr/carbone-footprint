@@ -1,4 +1,3 @@
-
 # from kivymd.app import MDApp
 # from kivy.lang import Builder
 
@@ -51,8 +50,6 @@
 
 
 # Main().run()
-
-
 
 
 # from kivymd.app import MDApp
@@ -168,7 +165,7 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 
 from kivy.clock import Clock
-from plyer import accelerometer, gravity
+from plyer import accelerometer  # , gravity
 
 
 class Sensors(Widget):
@@ -183,8 +180,8 @@ class Sensors(Widget):
         self.ids.label2_acc.text = f"acc_y: {accel[1]}"
         self.ids.label3_acc.text = f"acc_z: {accel[2]}"
 
-        acc_mag = ((accel[0])**2 + (accel[1])**2 + (accel[2])**2)**(1/2)
-        self.ids.label4_acc.text = f"acc mag: {acc_mag}"
+        # acc_mag = ((accel[0])**2 + (accel[1])**2 + (accel[2])**2)**(1/2)
+        # self.ids.label4_acc.text = f"acc mag: {acc_mag}"
 
     # def get_gravity(self):
     #     grav = gravity.gravity
@@ -192,7 +189,6 @@ class Sensors(Widget):
     #     self.ids.label1_grav.text = f"grav_x: {grav[0]}"
     #     self.ids.label2_grav.text = f"grav_y: {grav[1]}"
     #     self.ids.label3_grav.text = f"grav_z: {grav[2]}"
-
 
     #     grav_mag = ((grav[0])**2 + (grav[1])**2 + (grav[2])**2)**(1/2)
     #     self.ids.label4_grav.text = f"grav mag: {grav_mag}"
@@ -202,7 +198,7 @@ class Sensors(Widget):
             if not self.sensorEnabled:
                 accelerometer.enable()
                 # gravity.enable()
-                Clock.schedule_interval(self.get_acceleration, 1 / 20.)
+                Clock.schedule_interval(self.get_acceleration, 1 / 20.0)
                 # Clock.schedule_interval(self.get_gravity, 1 / 20.)
 
                 self.sensorEnabled = True
@@ -216,11 +212,17 @@ class Sensors(Widget):
                 self.sensorEnabled = False
                 self.ids.button1.text = "Start"
         except NotImplementedError:
-            import traceback; traceback.print_exc()
-            self.ids.status.text = "accelerometer or gravity is not supported for your platform"
+            import traceback
 
-class SensorsApp(App):
+            traceback.print_exc()
+            self.ids.status.text = (
+                "accelerometer or gravity is not supported for your platform"
+            )
+
+
+class Co2fApp(App):
     def build(self):
         return Sensors()
 
-SensorsApp().run()
+
+Co2fApp().run()
